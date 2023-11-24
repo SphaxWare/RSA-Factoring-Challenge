@@ -15,7 +15,7 @@ def main(filename):
     for num in numbers:
         p, q = factorize(num)
         if p is not None and q is not None:
-            print(f"{num}={p}*{q}")
+            print(f"{num}={q}*{p}")
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
@@ -25,5 +25,3 @@ if __name__ == "__main__":
     start_time = time.time()
     main(sys.argv[1])
     end_time = time.time()
-
-    print(f"\nExecution time: {end_time - start_time:.3f} seconds")
