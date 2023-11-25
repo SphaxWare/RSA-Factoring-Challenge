@@ -35,9 +35,6 @@ def factorize(number):
         if p is not None and q is not None:
             return p, q
 
-def format_factors(num, p, q):
-    return f"{num}={q}*{p}"
-
 def main(filename):
     with open(filename, 'r') as file:
         numbers = [int(line.strip()) for line in file]
@@ -45,7 +42,7 @@ def main(filename):
     for num in numbers:
         p, q = factorize(num)
         if p is not None and q is not None:
-            print(format_factors(num, p, q))
+            print(f"{num}={q}*{p}")
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
