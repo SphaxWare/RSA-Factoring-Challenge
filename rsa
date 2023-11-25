@@ -36,7 +36,7 @@ def main(filename):
 
     for n in numbers:
         factors = factorize_large(n)
-        factorization_str = ' * '.join(map(str, factors))
+        factorization_str = '*'.join(map(str, factors))
         print(f"{n}={factorization_str}")
 
 if __name__ == "__main__":
