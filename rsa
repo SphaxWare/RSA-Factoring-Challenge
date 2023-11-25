@@ -1,0 +1,48 @@
+#!/usr/bin/python3
+import sys
+
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+def pollards_rho(n):
+    x = 2
+    y = 2
+    d = 1
+
+    f = lambda x: (x**2 + 1) % n
+
+    while d == 1:
+        x = f(x)
+        y = f(f(y))
+        d = gcd(abs(x - y), n)
+
+    return d
+
+def factorize_large(n):
+    factors = []
+
+    while n > 1:
+        factor = pollards_rho(n)
+        factors.append(factor)
+        n //= factor
+
+    return factors
+
+def main(filename):
+    with open(filename, 'r') as file:
+        numbers = [int(line.strip()) for line in file]
+
+    for n in numbers:
+        factors = factorize_large(n)
+        factorization_str = ' * '.join(map(str, factors))
+        print(f"{n}={factorization_str}")
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: ./rsa.py <filename>")
+        sys.exit(1)
+
+    filename = sys.argv[1]
+    main(filename)
